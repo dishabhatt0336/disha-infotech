@@ -92,3 +92,4 @@ const Navigation = ({ activeSection, setActiveSection }) => {
   );
 };
 
+export default Navigation;
