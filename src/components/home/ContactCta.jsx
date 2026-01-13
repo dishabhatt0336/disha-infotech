@@ -1,100 +1,53 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Globe, Menu, X } from "lucide-react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 
-const Navigation = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Careers', path: '/careers' },
-    { name: 'Contact', path: '/contact' }
-  ];
+const ContactCta = () => {
+  const navigate = useNavigate();
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'}`}>
+    <section className="py-20 bg-gradient-to-br from-blue-500 to-blue-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <Globe className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              TechVista
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          <div className="hidden md:block">
-            <Link 
-              to="/contact"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Elevate Your Infrastructure?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Let's discuss how we can help you modernize your space.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <button 
+              onClick={() => navigate('/contact')}
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
             >
-              Get Started
-            </Link>
+              Get in Touch <ArrowRight className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => navigate('/services')}
+              className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-orange-600 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              View Our Services
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="grid md:grid-cols-3 gap-8 text-white">
+            <div className="flex items-center justify-center gap-3">
+              <Mail className="w-6 h-6" />
+              <span>dishainfotech303@gmail.com</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <Phone className="w-6 h-6" />
+              <span>+91 7600006288</span>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <MapPin className="w-6 h-6" />
+              <span>Ahmedabad, India</span>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t">
-          <div className="px-4 py-4 space-y-3">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                  location.pathname === item.path
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </nav>
+    </section>
   );
 };
 
-export default Navigation;
+export default ContactCta;

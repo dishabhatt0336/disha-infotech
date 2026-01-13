@@ -1,29 +1,20 @@
-import React, { useState } from "react";
-// import {
-//   Code,
-//   Smartphone,
-//   Cloud,
-//   Database,
-//   Brain,
-//   Users,
-//   ArrowRight,
-//   ChevronRight
-// } from "lucide-react";
-// import { Target, Briefcase } from "lucide-react";
+import React from "react";
 import Hero from "../components/home/Hero";
 import OurServices from "../components/home/OurServices";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import Testimonials from "../components/home/Testimonials";
 import ContactCta from "../components/home/ContactCta";
+import CompanyStats from "../components/home/CompanyStats";
 
 const Home = () => {
   return (
     <>
       <Hero />
+      <CompanyStats />
       <OurServices />
       <WhyChooseUs />
       <Testimonials />
-      <ContactCta />
+      {/* <ContactCta /> */}
     </>
   );
 };
