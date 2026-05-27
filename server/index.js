@@ -6,7 +6,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
-const Contact = require("./models/Contact");
+const Contact = require("./models/contact.js");
 const ExpressError = require("./utils/ExpressError.js");
 
 const contactRouter = require("./routes/contact.js");

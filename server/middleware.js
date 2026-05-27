@@ -1,4 +1,4 @@
-const Contact = require("./models/Contact");
+const Contact = require("./models/contact.js");
 const ExpressError = require("./utils/ExpressError.js");
 const {contactSchema} = require("./schema.js");
 
